@@ -14,6 +14,7 @@ if [ $# -lt 1 ]; then
   echo "- win32-x64"
   echo "- win32-arm64v8"
   echo "- linux-x64"
+  echo "- linux-sse2-x64"
   echo "- linuxmusl-x64"
   echo "- linux-armv6"
   echo "- linux-arm64v8"
@@ -89,7 +90,7 @@ for flavour in win32-ia32 win32-x64 win32-arm64v8; do
 done
 
 # Linux (x64, ARMv6, ARM64v8)
-for flavour in linux-x64 linuxmusl-x64 linux-armv6 linux-arm64v8 linuxmusl-arm64v8 linux-ppc64le linux-riscv64 linux-s390x; do
+for flavour in linux-x64 linux-sse2-x64 linuxmusl-x64 linux-armv6 linux-arm64v8 linuxmusl-arm64v8 linux-ppc64le linux-riscv64 linux-s390x; do
   if [ $PLATFORM = "all" ] || [ $PLATFORM = $flavour ]; then
     echo "Building $flavour..."
     docker build --pull -t vips-dev-$flavour platforms/$flavour
